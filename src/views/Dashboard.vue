@@ -2,6 +2,43 @@
   <div class="Dashboard">
     <h1 class="subheading ma-5">Dashboard</h1>
     <v-container class="my-5">
+      <v-layout row class="mb-3">
+        <v-col>
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                small
+                text
+                color="grey"
+                v-bind="attrs"
+                v-on="on"
+                @click="sortBy('title')"
+              >
+                <v-icon left small>{{ icons.folder }}</v-icon>
+                <span class="caption text-lowercase">By project name</span>
+              </v-btn>
+            </template>
+            <span>sort projects by name</span>
+          </v-tooltip>
+
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                small
+                text
+                color="grey"
+                v-bind="attrs"
+                v-on="on"
+                @click="sortBy('person')"
+              >
+                <v-icon left small>{{ icons.person }}</v-icon>
+                <span class="caption text-lowercase">By Person</span>
+              </v-btn>
+            </template>
+            <span>sort projects by person</span>
+          </v-tooltip>
+        </v-col>
+      </v-layout>
       <v-card v-for="project in projects" :key="project.id" text>
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
           <v-col xs="12" md="6">
@@ -45,6 +82,10 @@
 export default {
   name: "Dashboard",
   data: () => ({
+    icons: {
+      folder: "mdi-folder",
+      person: "mdi-account-arrow-left"
+    },
     projects: [
       {
         id: "123189031283jkhgm",
@@ -85,7 +126,10 @@ export default {
     ]
   }),
   methods: {
-    checkColor: proj => {
+    sortBy(prop) {
+      this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+    },
+    checkColor(proj) {
       if (proj.status) {
         if (proj.status === "ongoing") {
           return "orange";
