@@ -39,7 +39,11 @@
           </v-tooltip>
         </v-col>
       </v-layout>
-      <v-card v-for="project in projects" :key="project.id" text>
+      <v-card
+        v-for="project in projects"
+        :key="project.id"
+        class="rounded-xl my-3"
+      >
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
           <v-col xs="12" md="6">
             <div class="caption secondary--text">
@@ -70,7 +74,6 @@
             </div>
           </v-col>
         </v-layout>
-        <v-divider />
       </v-card>
     </v-container>
   </div>

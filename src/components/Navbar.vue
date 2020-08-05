@@ -11,6 +11,25 @@
         <span>Sam</span>
       </v-toolbar-title>
       <v-spacer />
+      <!-- drop down menu -->
+      <div class="text-center">
+        <v-menu open-on-hover top offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="primary" dark v-bind="attrs" v-on="on">
+              <v-icon>{{ icons.expand }}</v-icon>
+              Dropdown
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item v-for="item in 5" :key="item">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+      <!-- drop down menu -->
+
       <v-btn text color="grey">
         <span>Sign Out</span>
         <v-icon right>{{ icons.signOut }}</v-icon>
@@ -61,12 +80,12 @@
 </template>
 
 <script>
-import { mdiMenu, mdiExitToApp } from "@mdi/js";
 export default {
   data: () => ({
     icons: {
-      signOut: mdiExitToApp,
-      menuIcon: mdiMenu
+      signOut: "mdi-exit-to-app",
+      menuIcon: "mdi-menu",
+      expand: "mdi-extend-more"
     },
     drawer: null,
     drawerHeader: { title: "Sam Arbid", subtitle: "Software engineer" },
