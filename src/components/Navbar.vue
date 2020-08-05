@@ -13,16 +13,20 @@
       <v-spacer />
       <!-- drop down menu -->
       <div class="text-center">
-        <v-menu open-on-hover top offset-y>
+        <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              <v-icon>{{ icons.expand }}</v-icon>
-              Dropdown
+              <v-icon left>{{ icons.expand }}</v-icon>
+              Menu
             </v-btn>
           </template>
-
           <v-list>
-            <v-list-item v-for="item in 5" :key="item">
+            <v-list-item
+              v-for="item in items"
+              :key="item.id"
+              router
+              :to="item.route"
+            >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -85,7 +89,7 @@ export default {
     icons: {
       signOut: "mdi-exit-to-app",
       menuIcon: "mdi-menu",
-      expand: "mdi-extend-more"
+      expand: "mdi-chevron-down"
     },
     drawer: null,
     drawerHeader: { title: "Sam Arbid", subtitle: "Software engineer" },
