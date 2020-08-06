@@ -58,9 +58,9 @@
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-
         <v-divider></v-divider>
 
+        <popup />
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -84,7 +84,12 @@
 </template>
 
 <script>
+import Popup from "./Popup.vue";
+
 export default {
+  components: {
+    Popup
+  },
   data: () => ({
     icons: {
       signOut: "mdi-exit-to-app",
