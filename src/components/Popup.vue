@@ -25,9 +25,33 @@
               v-model="form.information"
               prepend-icon="mdi-pencil"
             ></v-textarea>
+            <!-- date picker start -->
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="true"
+              :return-value.sync="menu"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="formattedDate"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                  label="Due date"
+                  prepend-icon="mdi-calendar-range"
+                >
+                </v-text-field>
+              </template>
+              <v-date-picker v-model="form.due"></v-date-picker>½
+            </v-menu>
+            <v-spacer></v-spacer>
+            <!-- date picker end -->
           </v-form>
         </v-card-text>
-
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -42,6 +66,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   data() {
     return {
@@ -49,16 +75,23 @@ export default {
       icons: {
         newProject: "mdi-newspaper-plus"
       },
+      menu: false,
       form: {
         title: "",
-        information: ""
+        information: "",
+        due: new Date().toISOString().substr(0, 10)
       }
     };
   },
   methods: {
     submit() {
-      console.log(this.form.title, this.form.information);
+      console.log(this.form.title, this.form.information, this.form.due);
       this.dialog = false;
+    }
+  },
+  computed: {
+    formattedDate() {
+      return moment(this.form.due).format("Do MMMM YYYY");
     }
   }
 };
