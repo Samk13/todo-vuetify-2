@@ -23,48 +23,26 @@
   </div>
 </template>
 <script>
+import db from "@/firebase";
+
 export default {
   data: () => {
     return {
-      projects: [
-        {
-          id: "123189031283jkhgm",
-          title: "Design a new website",
-          person: "Sam Arbid",
-          due: "1st Jan 2020",
-          status: "ongoing",
-          content:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!"
-        },
-        {
-          id: "p23asojdkajsf",
-          title: "Code up the homepage",
-          person: "Chun Li",
-          due: "10th Jan 2021",
-          status: "complete",
-          content:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!"
-        },
-        {
-          id: "pdk67fdf65f",
-          title: "Design video thumbnails",
-          person: "Sam Arbid",
-          due: "20th Dec 2022",
-          status: "complete",
-          content:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!"
-        },
-        {
-          id: "p23asojdkaklsdfgjsf",
-          title: "Create a community forum",
-          person: "Gouken",
-          due: "20th Oct 2023",
-          status: "overdue",
-          content:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!"
-        }
-      ]
+      projects: []
     };
+  },
+  created() {
+    db.collection("projects").onSnapshot(res => {
+      const changes = res.docChanges();
+      changes.forEach(change => {
+        if (change.type === "added") {
+          this.projects.push({
+            ...change.doc.data(),
+            id: change.doc.id
+          });
+        }
+      });
+    });
   },
   computed: {
     myProjects() {
