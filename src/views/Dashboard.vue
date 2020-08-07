@@ -66,11 +66,21 @@
               {{ project.due }}
             </div>
           </v-col>
-          <v-col xs="2" sm="4" md="2">
+          <v-col xs="2" sm="4" md="2" class="d-flex justify-end">
             <div class="right">
               <v-chip :color="checkColor(project)" class="white--text" small>
                 {{ project.status }}
               </v-chip>
+            </div>
+            <div class="mx-5">
+              <v-btn
+                icon
+                color="pink"
+                id="project.id"
+                @click="deleteProject(project.id)"
+              >
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
             </div>
           </v-col>
         </v-layout>
@@ -106,6 +116,9 @@ export default {
     });
   },
   methods: {
+    refreshPage() {
+      this.$forceUpdate();
+    },
     sortBy(prop) {
       this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
@@ -114,12 +127,24 @@ export default {
         if (proj.status === "ongoing") {
           return "orange";
         } else if (proj.status === "complete") {
-          return "#3cd1c2";
+          return "cyan lighten-2";
         } else if (proj.status === "overdue") {
-          return "#ff6347";
+          return "deep-orange darken-4";
         }
       }
       return;
+    },
+    deleteProject(id) {
+      db.collection("projects")
+        .doc(id)
+        .delete()
+        .then(() => {
+          console.log("Project deleted successfully!");
+        })
+        .catch(error => {
+          console.error("Error removing document: ", error);
+        });
+      this.projects = this.projects.filter(item => item.id !== id);
     }
   }
 };

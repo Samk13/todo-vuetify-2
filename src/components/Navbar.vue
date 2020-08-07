@@ -109,8 +109,8 @@ export default {
     drawerHeader: { title: "Sam Arbid", subtitle: "Software engineer" },
     items: [
       { title: "Dashboard", icon: "mdi-view-dashboard", route: "/" },
-      { title: "projects", icon: "mdi-projector-screen", route: "/projects" },
-      { title: "teams", icon: "mdi-account-group", route: "/teams" }
+      { title: "Projects", icon: "mdi-projector-screen", route: "/projects" },
+      { title: "Teams", icon: "mdi-account-group", route: "/teams" }
     ]
   })
 };
