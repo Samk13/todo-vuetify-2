@@ -93,7 +93,7 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
-        this.loading = true
+        this.loading = true;
         const project = {
           title: this.form.title,
           content: this.form.information,
@@ -104,12 +104,12 @@ export default {
         db.collection("projects")
           .add(project)
           .then(() => {
-            console.log("saved in the DB ✍")
-            this.loading = false
+            console.log("saved in the DB ✍");
+            this.loading = false;
             this.dialog = false;
           });
       }
-      return
+      return;
     }
   },
   computed: {
