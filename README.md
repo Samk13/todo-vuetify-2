@@ -1,4 +1,4 @@
-# todo-app using : vuetify + typeScript
+# todo-app using : vuetify + typeScript and firebase
 
 ## Project setup
 ```
