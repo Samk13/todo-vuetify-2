@@ -27,7 +27,7 @@
               v-model="form.person"
               :rules="inputRules"
             ></v-text-field>
-            <v-menu open-on-hover block buttom offset-y>
+            <!-- <v-menu open-on-hover block buttom offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   :color="checkColor"
@@ -48,7 +48,15 @@
                   <v-list-item-title>{{ item }}</v-list-item-title>
                 </v-list-item>
               </v-list>
-            </v-menu>
+            </v-menu> -->
+            <v-select
+              v-model="form.status"
+              prepend-icon="mdi-pencil"
+              :items="progress"
+              :rules="[v => !!v || 'Item is required']"
+              label="Item"
+              required
+            ></v-select>
             <v-spacer></v-spacer>
 
             <v-textarea
@@ -89,7 +97,12 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="submit" :loading="loading">
+          <v-btn
+            color="success"
+            class="pa-5 ma-5 rounded-xl"
+            @click="submit"
+            :loading="loading"
+          >
             Add project
           </v-btn>
         </v-card-actions>
@@ -141,6 +154,11 @@ export default {
             console.log("saved in the DB ✍");
             this.loading = false;
             this.dialog = false;
+            Object.keys(this.form).forEach(key => (this.form[key] = ""));
+            // this.$refs.form.reset();
+            this.form.due = new Date().toISOString().substr(0, 10);
+            moment(this.form.due).format("Do MMMM YYYY");
+            this.$refs.form.resetValidation();
             this.$emit("projectAdded");
           });
       }
