@@ -1,5 +1,13 @@
 <template>
   <nav>
+    <v-snackbar top v-model="snackbar">
+      Project has been added 😎
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-app-bar app>
       <v-app-bar-nav-icon class="grey--text" @click.stop="drawer = !drawer">
         <v-icon>
@@ -60,7 +68,7 @@
         </v-list-item>
         <v-divider></v-divider>
 
-        <popup />
+        <popup @projectAdded="snackbar = true" />
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -97,6 +105,7 @@ export default {
       expand: "mdi-chevron-down"
     },
     drawer: null,
+    snackbar: false,
     drawerHeader: { title: "Sam Arbid", subtitle: "Software engineer" },
     items: [
       { title: "Dashboard", icon: "mdi-view-dashboard", route: "/" },

@@ -107,6 +107,7 @@ export default {
             console.log("saved in the DB ✍");
             this.loading = false;
             this.dialog = false;
+            this.$emit("projectAdded");
           });
       }
       return;
