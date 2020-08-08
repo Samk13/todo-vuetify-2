@@ -2,14 +2,14 @@
   <div class="text-center my-5">
     <v-dialog v-model="dialog" max-width="650px" content-class="rounded-xl">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="success" v-bind="attrs" v-on="on">
+        <v-btn color="success" class="rounded-xl" v-bind="attrs" v-on="on">
           <v-icon left>{{ icons.newProject }}</v-icon>
           <span>Add new project</span>
         </v-btn>
       </template>
 
       <v-card class="rounded-xl">
-        <v-card-title class="headline success lighten-2">
+        <v-card-title class="headline success">
           Create new project
         </v-card-title>
 
@@ -51,10 +51,10 @@
             </v-menu> -->
             <v-select
               v-model="form.status"
-              prepend-icon="mdi-pencil"
+              prepend-icon="mdi-progress-check"
               :items="progress"
               :rules="[v => !!v || 'Item is required']"
-              label="Item"
+              label="Progress status"
               required
             ></v-select>
             <v-spacer></v-spacer>
@@ -129,7 +129,7 @@ export default {
         title: "",
         information: "",
         person: "",
-        status: "complete",
+        status: "",
         due: new Date().toISOString().substr(0, 10)
       },
       inputRules: [

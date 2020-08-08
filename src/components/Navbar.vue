@@ -20,26 +20,8 @@
       </v-toolbar-title>
       <v-spacer />
       <!-- drop down menu -->
-      <div class="text-center">
-        <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              <v-icon left>{{ icons.expand }}</v-icon>
-              Menu
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item
-              v-for="item in items"
-              :key="item.id"
-              router
-              :to="item.route"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </div>
+      <popup class="mr-5" @projectAdded="snackbar = true" />
+
       <!-- drop down menu -->
 
       <v-btn text color="grey">
@@ -49,7 +31,7 @@
     </v-app-bar>
 
     <v-navigation-drawer app v-model="drawer" class="primary">
-      <v-list dense nav class="py-0">
+      <v-list dense class="py-1">
         <v-list-item two-line>
           <v-list-item-avatar>
             <img

@@ -13,7 +13,9 @@
             </div>
             <v-card-text class="px-4">
               <div class="font-weight-bold">{{ project.due }}</div>
-              <div class="font-weight-bold">{{ project.status }}</div>
+              <div class="font-weight-bold success--text">
+                {{ project.status }}
+              </div>
               <div>{{ project.content }}</div>
             </v-card-text>
           </v-expansion-panel-content>

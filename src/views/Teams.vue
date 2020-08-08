@@ -46,18 +46,22 @@ export default {
       },
       team: [
         {
-          name: "The Net Ninja",
+          name: "First user",
           role: "Web developer",
           avatar: "/avatars/01.jpg"
         },
-        { name: "Ryu", role: "Graphic designer", avatar: "/avatars/02.jpg" },
-        { name: "Chun Li", role: "Web developer", avatar: "/avatars/03.jpg" },
         {
-          name: "Gouken",
+          name: "second user",
+          role: "Graphic designer",
+          avatar: "/avatars/02.jpg"
+        },
+        { name: "user30", role: "Web developer", avatar: "/avatars/03.jpg" },
+        {
+          name: "user 04",
           role: "Social media maverick",
           avatar: "/avatars/04.jpg"
         },
-        { name: "Yoshi", role: "Sales guru", avatar: "/avatars/05.jpg" }
+        { name: "user 05", role: "Sales guru", avatar: "/avatars/05.jpg" }
       ]
     };
   }
