@@ -1,5 +1,5 @@
 <template>
-  <v-footer dark padless absolute>
+  <v-footer padless absolute>
     <v-card flat tile class="primary lighten-1 white--text text-center">
       <v-card-text>
         <v-btn
