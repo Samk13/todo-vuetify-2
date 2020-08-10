@@ -33,26 +33,29 @@
     </v-container>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   data: () => ({
     valid: true,
     name: "",
     password: "",
     show1: false,
     rules: {
-      required: value => !!value || "Required.",
-      min: v => v.length >= 8 || "Min 8 characters",
+      required: (value: string) => !!value || "Required.",
+      min: (v: string) => v.length >= 8 || "Min 8 characters",
       emailMatch: () => "The email and password you entered don't match"
     },
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+      (v: string) => !!v || "Name is required",
+      (v: string) =>
+        (v && v.length <= 10) || "Name must be less than 10 characters"
     ],
     email: "",
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      (v: string) => !!v || "E-mail is required",
+      (v: string) => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
@@ -62,14 +65,18 @@ export default {
 
   methods: {
     validate() {
-      this.$refs.form.validate();
+      (this.$refs.form as Vue & { validate: () => boolean }).validate();
     },
     reset() {
-      this.$refs.form.reset();
+      // this.$refs.form.reset();
+      (this.$refs.form as Vue & { reset: () => boolean }).reset();
     },
     resetValidation() {
-      this.$refs.form.resetValidation();
+      // this.$refs.form.resetValidation();
+      (this.$refs.form as Vue & {
+        resetValidation: () => string;
+      }).resetValidation();
     }
   }
-};
+});
 </script>
