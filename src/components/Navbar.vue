@@ -24,8 +24,8 @@
 
       <!-- drop down menu -->
 
-      <v-btn text color="grey">
-        <span>Sign Out</span>
+      <v-btn text color="grey" route to="/login">
+        <span>Sign in</span>
         <v-icon right>{{ icons.signOut }}</v-icon>
       </v-btn>
     </v-app-bar>

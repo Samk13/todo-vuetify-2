@@ -11,13 +11,22 @@ const routes: Array<RouteConfig> = [
     component: Dashboard
   },
   {
+    path: "/login",
+    name: "login",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "projects" */ "../components/Auth/SignIn.vue")
+  },
+  {
     path: "/projects",
     name: "projects",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Projects.vue")
+      import(/* webpackChunkName: "projects" */ "../views/Projects.vue")
   },
   {
     path: "/teams",
@@ -26,7 +35,7 @@ const routes: Array<RouteConfig> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Teams.vue")
+      import(/* webpackChunkName: "teams" */ "../views/Teams.vue")
   }
 ];
 

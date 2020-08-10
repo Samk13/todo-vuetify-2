@@ -26,8 +26,9 @@
 </template>
 <script>
 import db from "@/firebase";
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
   data: () => {
     return {
       projects: []
@@ -53,5 +54,5 @@ export default {
       });
     }
   }
-};
+});
 </script>

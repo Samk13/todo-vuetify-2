@@ -1,5 +1,5 @@
 <template>
-  <v-footer dark padless absolute>
+  <v-footer padless absolute>
     <v-card flat tile class="primary lighten-1 white--text text-center">
       <v-card-text>
         <v-btn
@@ -35,7 +35,9 @@
   </v-footer>
 </template>
 <script>
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
   data: () => ({
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     links: [
@@ -45,5 +47,5 @@ export default {
       { icon: "mdi-instagram", link: "https://www.instagram.com/sam_insta13/" }
     ]
   })
-};
+});
 </script>
